@@ -1,11 +1,12 @@
 import { createClient } from "../../../supabase/server";
 import { redirect } from "next/navigation";
-import DashboardNavbar from "@/components/dashboard-navbar";
+import CandidateNavbar from "@/components/candidate-navbar";
 import { Button } from "@/components/ui/button";
 import { UserCircle, Briefcase, Search, Building2, Clock } from "lucide-react";
 import Link from "next/link";
 import JobCard from "@/components/job-card";
 import JobFilter from "@/components/job-filter";
+import CandidateFooter from "@/components/candidate-footer";
 
 export default async function CandidateDashboard() {
   const supabase = await createClient();
@@ -99,7 +100,7 @@ export default async function CandidateDashboard() {
 
   return (
     <>
-      <DashboardNavbar />
+      <CandidateNavbar />
       <main className="w-full bg-gray-50 min-h-screen">
         <div className="container mx-auto px-4 py-8">
           {/* Header Section */}
@@ -123,7 +124,7 @@ export default async function CandidateDashboard() {
                 <div className="mb-6">
                   <h2 className="text-lg font-semibold mb-4">Your Profile</h2>
                   <div className="flex items-center gap-3 mb-4">
-                    <UserCircle size={40} className="text-blue-600" />
+                    <UserCircle size={40} className="text-purple-600" />
                     <div>
                       <p className="font-medium">
                         {user.user_metadata?.full_name || "User"}
@@ -133,7 +134,7 @@ export default async function CandidateDashboard() {
                   </div>
                   <Link
                     href="/onboarding/candidate"
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                    className="text-purple-600 hover:text-purple-800 text-sm font-medium flex items-center"
                   >
                     Complete your profile
                     <svg
@@ -164,7 +165,7 @@ export default async function CandidateDashboard() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-blue-600 h-2 rounded-full"
+                          className="bg-purple-600 h-2 rounded-full"
                           style={{ width: "30%" }}
                         ></div>
                       </div>
@@ -196,7 +197,7 @@ export default async function CandidateDashboard() {
                   </div>
                   <Link
                     href="#"
-                    className="mt-4 block text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    className="mt-4 block text-purple-600 hover:text-purple-800 text-sm font-medium"
                   >
                     View all applications
                   </Link>
@@ -222,23 +223,23 @@ export default async function CandidateDashboard() {
               {/* Pagination */}
               <div className="mt-8 flex justify-center">
                 <nav className="flex items-center space-x-2">
-                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50">
+                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-purple-600 hover:bg-purple-50">
                     Previous
                   </button>
-                  <button className="px-3 py-1 rounded-md bg-blue-600 text-white">
+                  <button className="px-3 py-1 rounded-md bg-purple-600 text-white">
                     1
                   </button>
-                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50">
+                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-purple-600 hover:bg-purple-50">
                     2
                   </button>
-                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50">
+                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-purple-600 hover:bg-purple-50">
                     3
                   </button>
                   <span className="px-2 text-gray-600">...</span>
-                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50">
+                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-purple-600 hover:bg-purple-50">
                     10
                   </button>
-                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50">
+                  <button className="px-3 py-1 rounded-md text-gray-600 hover:text-purple-600 hover:bg-purple-50">
                     Next
                   </button>
                 </nav>
@@ -247,6 +248,7 @@ export default async function CandidateDashboard() {
           </div>
         </div>
       </main>
+      <CandidateFooter />
     </>
   );
 }

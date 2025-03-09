@@ -105,7 +105,7 @@ export default function JobFilter({ onFilter = () => {} }: JobFilterProps) {
           </div>
           <Button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-purple-600 hover:bg-purple-700 text-white"
           >
             Search Jobs
           </Button>
@@ -115,7 +115,7 @@ export default function JobFilter({ onFilter = () => {} }: JobFilterProps) {
           <Button
             type="button"
             variant="ghost"
-            className="text-blue-600 hover:text-blue-800 p-0 h-auto font-medium flex items-center"
+            className="text-purple-600 hover:text-purple-800 p-0 h-auto font-medium flex items-center"
             onClick={() => setShowFilters(!showFilters)}
           >
             <Filter size={16} className="mr-1" />
@@ -149,7 +149,7 @@ export default function JobFilter({ onFilter = () => {} }: JobFilterProps) {
                   <label key={type} className="flex items-center">
                     <input
                       type="checkbox"
-                      className="rounded text-blue-600 focus:ring-blue-500 mr-2"
+                      className="rounded text-purple-600 focus:ring-purple-500 mr-2"
                       checked={filters.jobType.includes(type)}
                       onChange={() => handleFilterChange("jobType", type)}
                     />
@@ -169,7 +169,7 @@ export default function JobFilter({ onFilter = () => {} }: JobFilterProps) {
                   <label key={level} className="flex items-center">
                     <input
                       type="checkbox"
-                      className="rounded text-blue-600 focus:ring-blue-500 mr-2"
+                      className="rounded text-purple-600 focus:ring-purple-500 mr-2"
                       checked={filters.experienceLevel.includes(level)}
                       onChange={() =>
                         handleFilterChange("experienceLevel", level)
@@ -190,7 +190,7 @@ export default function JobFilter({ onFilter = () => {} }: JobFilterProps) {
                     <input
                       type="radio"
                       name="salary"
-                      className="text-blue-600 focus:ring-blue-500 mr-2"
+                      className="text-purple-600 focus:ring-purple-500 mr-2"
                       checked={filters.salary === range}
                       onChange={() => handleFilterChange("salary", range)}
                     />

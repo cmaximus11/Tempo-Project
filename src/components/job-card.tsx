@@ -35,7 +35,7 @@ export default function JobCard({
               className="w-12 h-12 rounded-md object-cover"
             />
           ) : (
-            <div className="w-12 h-12 bg-blue-100 rounded-md flex items-center justify-center text-blue-600 font-bold text-xl">
+            <div className="w-12 h-12 bg-purple-100 rounded-md flex items-center justify-center text-purple-600 font-bold text-xl">
               {company.charAt(0)}
             </div>
           )}
@@ -44,7 +44,7 @@ export default function JobCard({
             <p className="text-gray-600 text-sm">{company}</p>
           </div>
         </div>
-        <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+        <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">
           {type}
         </span>
       </div>
@@ -100,7 +100,7 @@ export default function JobCard({
         <span className="text-xs text-gray-500">{postedDate}</span>
         <Link
           href={`/jobs/${id}`}
-          className="text-blue-600 hover:text-blue-800 font-medium text-sm"
+          className="text-purple-600 hover:text-purple-800 font-medium text-sm"
         >
           View Details
         </Link>
