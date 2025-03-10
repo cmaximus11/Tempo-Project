@@ -20,21 +20,21 @@ CREATE POLICY "Only admins can insert skills" ON public.skills
   FOR INSERT
   TO authenticated
   WITH CHECK (auth.uid() IN (
-    SELECT id FROM public.users WHERE user_metadata->>'role' = 'admin'
+    SELECT id FROM auth.users WHERE raw_user_meta_data->>'role' = 'admin'
   ));
 
 CREATE POLICY "Only admins can update skills" ON public.skills
   FOR UPDATE
   TO authenticated
   USING (auth.uid() IN (
-    SELECT id FROM public.users WHERE user_metadata->>'role' = 'admin'
+    SELECT id FROM auth.users WHERE raw_user_meta_data->>'role' = 'admin'
   ));
 
 CREATE POLICY "Only admins can delete skills" ON public.skills
   FOR DELETE
   TO authenticated
   USING (auth.uid() IN (
-    SELECT id FROM public.users WHERE user_metadata->>'role' = 'admin'
+    SELECT id FROM auth.users WHERE raw_user_meta_data->>'role' = 'admin'
   ));
 
 -- Create index for skill searches
