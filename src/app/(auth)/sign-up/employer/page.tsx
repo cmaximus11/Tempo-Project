@@ -117,9 +117,9 @@ export default async function EmployerSignup(props: {
             <SubmitButton
               formAction={signUpEmployerAction}
               pendingText="Signing up..."
-              className="w-full"
+              className="w-full bg-blue-600 hover:bg-blue-700"
             >
-              Sign up
+              Create Employer Account
             </SubmitButton>
 
             <FormMessage message={searchParams} />

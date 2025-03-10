@@ -43,38 +43,42 @@ export const signUpEmployerAction = async (formData: FormData) => {
   }
 
   if (user) {
-    try {
-      const { error: updateError } = await supabase.from("users").insert({
+    // Create user record
+    await supabase
+      .from("users")
+      .insert({
         id: user.id,
         user_id: user.id,
         name: fullName,
         email: email,
         token_identifier: user.id,
         created_at: new Date().toISOString(),
-      });
+      })
+      .single();
 
-      if (updateError) {
-        // Error handling without console.error
-      }
+    // Create initial employer profile
+    await supabase
+      .from("employer_profiles")
+      .insert({
+        user_id: user.id,
+        company_name: companyName,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .single();
 
-      // Create initial employer profile
-      const { error: profileError } = await supabase
-        .from("employer_profiles")
-        .insert({
-          user_id: user.id,
-          company_name: companyName,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
+    // Sign in the user directly
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      if (profileError) {
-        // Error handling without console.error
-      }
-    } catch (err) {
-      // Error handling without console.error
+    if (!signInError) {
+      return redirect("/onboarding/employer");
     }
   }
 
+  // Only reach here if auto-signin failed
   return encodedRedirect(
     "success",
     "/sign-up/employer",
@@ -118,38 +122,42 @@ export const signUpCandidateAction = async (formData: FormData) => {
   }
 
   if (user) {
-    try {
-      const { error: updateError } = await supabase.from("users").insert({
+    // Create user record
+    await supabase
+      .from("users")
+      .insert({
         id: user.id,
         user_id: user.id,
         name: fullName,
         email: email,
         token_identifier: user.id,
         created_at: new Date().toISOString(),
-      });
+      })
+      .single();
 
-      if (updateError) {
-        // Error handling without console.error
-      }
+    // Create initial candidate profile
+    await supabase
+      .from("candidate_profiles")
+      .insert({
+        user_id: user.id,
+        full_name: fullName,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .single();
 
-      // Create initial candidate profile
-      const { error: profileError } = await supabase
-        .from("candidate_profiles")
-        .insert({
-          user_id: user.id,
-          full_name: fullName,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
+    // Sign in the user directly
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      if (profileError) {
-        // Error handling without console.error
-      }
-    } catch (err) {
-      // Error handling without console.error
+    if (!signInError) {
+      return redirect("/onboarding/candidate");
     }
   }
 
+  // Only reach here if auto-signin failed
   return encodedRedirect(
     "success",
     "/sign-up/candidate",
@@ -231,7 +239,7 @@ export const resetPasswordAction = async (formData: FormData) => {
   const confirmPassword = formData.get("confirmPassword") as string;
 
   if (!password || !confirmPassword) {
-    encodedRedirect(
+    return encodedRedirect(
       "error",
       "/protected/reset-password",
       "Password and confirm password are required",
@@ -239,7 +247,7 @@ export const resetPasswordAction = async (formData: FormData) => {
   }
 
   if (password !== confirmPassword) {
-    encodedRedirect(
+    return encodedRedirect(
       "error",
       "/dashboard/reset-password",
       "Passwords do not match",
@@ -251,14 +259,18 @@ export const resetPasswordAction = async (formData: FormData) => {
   });
 
   if (error) {
-    encodedRedirect(
+    return encodedRedirect(
       "error",
       "/dashboard/reset-password",
       "Password update failed",
     );
   }
 
-  encodedRedirect("success", "/protected/reset-password", "Password updated");
+  return encodedRedirect(
+    "success",
+    "/protected/reset-password",
+    "Password updated",
+  );
 };
 
 export const signOutAction = async () => {
