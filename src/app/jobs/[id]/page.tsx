@@ -1,6 +1,6 @@
 import { createClient } from "../../../../supabase/server";
 import { redirect } from "next/navigation";
-import DashboardNavbar from "@/components/dashboard-navbar";
+import CandidateNavbar from "@/components/candidate-navbar";
 import { Button } from "@/components/ui/button";
 import {
   Briefcase,
@@ -13,6 +13,7 @@ import {
   Share2,
 } from "lucide-react";
 import Link from "next/link";
+import CandidateFooter from "@/components/candidate-footer";
 
 export default async function JobDetailPage({
   params,
@@ -104,15 +105,15 @@ export default async function JobDetailPage({
 
   return (
     <>
-      <DashboardNavbar />
+      <CandidateNavbar />
       <main className="bg-gray-50 min-h-screen pb-12">
         <div className="container mx-auto px-4 py-8">
           {/* Breadcrumb */}
           <div className="mb-6">
             <nav className="flex text-sm">
               <Link
-                href="/dashboard"
-                className="text-gray-500 hover:text-blue-600"
+                href="/candidate-dashboard"
+                className="text-gray-500 hover:text-purple-600"
               >
                 Jobs
               </Link>
@@ -143,7 +144,7 @@ export default async function JobDetailPage({
                         {jobDetail.company}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
                           {jobDetail.type}
                         </span>
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
@@ -154,7 +155,7 @@ export default async function JobDetailPage({
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="bg-purple-600 hover:bg-purple-700 text-white">
                       Apply Now
                     </Button>
                     <Button
@@ -273,7 +274,7 @@ export default async function JobDetailPage({
                 <div className="mt-4">
                   <Link
                     href="#"
-                    className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                    className="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center"
                   >
                     View company profile
                     <svg
@@ -305,7 +306,7 @@ export default async function JobDetailPage({
                   Submit your application now and take the next step in your
                   career journey.
                 </p>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mb-4">
+                <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white mb-4">
                   Apply Now
                 </Button>
                 <Button
@@ -325,7 +326,7 @@ export default async function JobDetailPage({
                     <Link
                       href={`/jobs/${job.id}`}
                       key={job.id}
-                      className="block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+                      className="block p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:shadow-sm transition-all"
                     >
                       <h3 className="font-semibold text-gray-900">
                         {job.title}
@@ -342,8 +343,8 @@ export default async function JobDetailPage({
                 </div>
                 <div className="mt-4 text-center">
                   <Link
-                    href="/dashboard"
-                    className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                    href="/candidate-dashboard"
+                    className="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center"
                   >
                     View all similar jobs
                     <svg
@@ -366,6 +367,7 @@ export default async function JobDetailPage({
           </div>
         </div>
       </main>
+      <CandidateFooter />
     </>
   );
 }
