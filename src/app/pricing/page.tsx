@@ -25,17 +25,9 @@ export default async function Pricing() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {plans
-            ?.filter((item: any) => {
-              return (
-                item.product &&
-                typeof item.product !== "string" &&
-                item.product.active === true
-              );
-            })
-            .map((item: any) => (
-              <PricingCard key={item.id} item={item} user={user} />
-            ))}
+          {plans?.map((item: any) => (
+            <PricingCard key={item.id} item={item} user={user} />
+          ))}
         </div>
       </div>
     </>

@@ -303,17 +303,9 @@ export default async function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {plans
-              ?.filter((item: any) => {
-                return (
-                  item.product &&
-                  typeof item.product !== "string" &&
-                  item.product.active === true
-                );
-              })
-              .map((item: any) => (
-                <PricingCard key={item.id} item={item} user={user} />
-              ))}
+            {plans?.map((item: any) => (
+              <PricingCard key={item.id} item={item} user={user} />
+            ))}
           </div>
         </div>
       </section>
